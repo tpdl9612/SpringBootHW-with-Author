@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>자세히 보기</title>
+    <style>
+        .button-container {
+            margin-top: 10px;
+        }
+
+        .button-container input[type="submit"] {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<h4 th:text="${article.title}"></h4>
+<div th:text="${article.content}"></div>
+<div>
+<a th:href="@{|/update/${article.id}|}">
+    <input type="submit" value="수정!">
+</a>
+<form th:action="@{|/delete/${article.id}|}" method="post">
+    <input type="submit" value="삭제!"onclick="return confirm('정말로 삭제하시겠습니까?')">
+</form>
+</div>
+<a href="/">목록으로</a>
+</body>
+</html>

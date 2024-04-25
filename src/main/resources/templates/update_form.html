@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 수정</title>
+</head>
+<body>
+<form th:action="@{|/update/${article.id}|}" method="post">
+    <input type="text" name="title" th:value="${article.title}">
+    <input type="text" name="content" th:value="${article.content}">
+    <input type="submit" value="수정!" onclick="return confirm('정말로 수정하시겠습니까?')">
+</form>
+<a href="/">취소</a>
+</body>
+</html>
