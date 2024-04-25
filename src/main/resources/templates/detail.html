@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>자세히 보기</title>
-    <style>
-        .button-container {
-            margin-top: 10px;
-        }
-
-        .button-container input[type="submit"] {
-            display: inline-block;
-            margin-right: 10px;
-        }
-    </style>
-</head>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
 <body>
 <h4 th:text="${article.title}"></h4>
 <div th:text="${article.content}"></div>
@@ -27,4 +13,5 @@
 </div>
 <a href="/">목록으로</a>
 </body>
+</div>
 </html>

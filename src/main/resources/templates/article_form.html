@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>등록</title>
-</head>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
 <body>
 <form action="/write" method="post">
     <input type="text" name="title">
@@ -12,4 +8,5 @@
 </form>
 <a href="/">취소</a>
 </body>
+</div>
 </html>
