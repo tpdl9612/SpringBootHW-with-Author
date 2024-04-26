@@ -12,7 +12,7 @@
         <td>
             <a th:href="@{|/detail/${article.id}|}" th:text="${article.title}"></a>
         </td>
-        <td th:text="${#temporals.format(article.createDate, 'yy-MM-dd a. hh-mm-ss')}"></td>
+        <td th:text="${#temporals.format(article.createDate, 'yy-MM-dd  a: hh시mm분ss초')}"></td>
     </tr>
     </tbody>
 </table>

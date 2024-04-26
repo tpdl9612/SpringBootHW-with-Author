@@ -40,4 +40,9 @@ public class UserController {
                 userCreateForm.getEmail());
         return "redirect:/";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login_form";
+    }
 }
