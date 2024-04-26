@@ -82,8 +82,9 @@
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                        <a th:href="@{/user/login}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">로그인</a>
-                        <a th:href="@{/user/signup}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-3">회원 가입</a>
+                        <a th:href="@{/user/login}" sec:authorize="isAnonymous()" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">로그인</a>
+                        <a th:href="@{/user/logout}" sec:authorize="isAuthenticated()" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-3">로그아웃</a>
+                        <a th:href="@{/user/signup}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-4">회원 가입</a>
                     </div>
                 </div>
             </div>
