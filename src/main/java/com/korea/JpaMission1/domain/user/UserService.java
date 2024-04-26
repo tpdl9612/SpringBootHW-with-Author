@@ -1,5 +1,6 @@
 package com.korea.JpaMission1.domain.user;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class UserService {
         this.userRepository.save(user);
         return user;
     }
+
     public SiteUser findByEmail(String email){
         return userRepository.findByEmail(email);
     }
