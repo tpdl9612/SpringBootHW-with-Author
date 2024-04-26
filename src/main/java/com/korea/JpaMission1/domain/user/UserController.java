@@ -23,6 +23,11 @@ public class UserController {
     @PostMapping("/signup")
     public String signup(@Valid UserCreateForm userCreateForm,
                          BindingResult bindingResult, Model model){
+        String error = userService.validateUserCreateForm(userCreateForm , model);
+        if( error != null){
+            return error;
+        }
+
         if(bindingResult.hasErrors()){
             return "signup_form";
         }
