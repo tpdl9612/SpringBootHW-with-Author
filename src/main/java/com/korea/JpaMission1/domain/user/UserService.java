@@ -22,7 +22,7 @@ public class UserService {
     }
 
     public SiteUser findByEmail(String email){
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).orElse(null);
     }
 
     public String validateUserCreateForm(UserCreateForm userCreateForm, Model model) {
