@@ -1,0 +1,50 @@
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+-----------
+
+git remote remove origin
+
+git remote add origin "깃허브주소"
+
+(이미 원격저장소(origin)을 이전에 설정했으면 새로 설정하기위해
+
+git remote set-url origin https://github.com/tpdl9612/SpringBootHW-with-Author.git    )
+
+를 설정하면 된다.           (깃허브 레퍼지토리 주소창)
+---
+(새 레퍼지토리라서 main이 없거나 main안의 커밋이 길어져서 최신화된 커밋들이 안보일땐
+git push origin 3b93820:refs/heads/main )
+		3b93820 = 브랜치명
+git pull origin main  (원격브랜치->로컬 브랜치로 동기화 , 원격저장소의 변경사항을 로컬저장소로 가져옴
+
+git push origin main (현재 로컬브랜치의 변경사항을 'origin'원격 저장소의 'main' 브랜치로 푸쉬)
+-------------------------------------------
+
+(git branch = * 현재 브랜치명 확인)
+git push -u origin main
+		(main=브랜치명)
+
+git checkout -b main (새로운브랜치 main으로 변경)
+
+git add . 
+
+git commit -m "커밋내용"
+
+git push -u origin main    (로컬저장소(컴퓨터내용)을 깃허브(원격저장소)에 업로드)
+
+main 브랜치 이외에 추가적으로 업로드 할떄 ::
+
+2가지방법
+1(권장). 커밋을 직접 푸시 : (이 경우, 브랜치가 생성되지않고 해당 커밋이 직접 푸시됨)
+
+git push origin 136b9c4:main
+(136b94 = 커밋파일 제목)
+
+----------------------------------------
+
+2. 브랜치 생성 및 커밋 푸시 :
+git checkout -b 'new-branch-name' 136b9c4
+git push -u origin new-branch-name
+- 로컬에 해당 커밋을 포함하는 새로운 브랜치생성 (new-branch-name = 새로 생성할 브랜치 이름)
+
