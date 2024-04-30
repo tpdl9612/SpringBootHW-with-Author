@@ -53,10 +53,14 @@ public class ArticleController {
         return "detail";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/delete/{articleId}")
-    public String delete(@PathVariable("articleId")int articleId) {
+    public String delete(@PathVariable("articleId")int articleId, Principal principal) {
         Article article = articleService.findArticleById(articleId);
-        articleRepository.delete(article);
+        if(!article.getAuthor().getUsername().equals(principal.getName())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        this.articleService.delete(article);
 
         return "redirect:/";
     }

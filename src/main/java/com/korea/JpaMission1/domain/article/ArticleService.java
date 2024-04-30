@@ -32,4 +32,8 @@ public class ArticleService {
         Optional <Article> article = articleRepository.findById(id);
         return article.orElseThrow(() -> new RuntimeException("찾을 수 없는 값입니다."));
     }
+
+    public void delete(Article article){
+        this.articleRepository.delete(article);
+    }
 }
