@@ -24,6 +24,7 @@ public class Article {
 
     private LocalDateTime createDate;
 
+
     @ManyToOne
     private SiteUser author;
 }

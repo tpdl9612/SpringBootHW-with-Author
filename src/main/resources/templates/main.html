@@ -4,6 +4,7 @@
     <thead>
     <tr>
         <th>제목</th>
+        <th>글쓴이</th>
         <th>작성일자</th>
     </tr>
     </thead>
@@ -12,6 +13,7 @@
         <td>
             <a th:href="@{|/detail/${article.id}|}" th:text="${article.title}"></a>
         </td>
+        <td><span th:if="${article.author != null}" th:text="${article.author.username}"></span></td>
         <td th:text="${#temporals.format(article.createDate, 'yy-MM-dd  a: hh시mm분ss초')}"></td>
     </tr>
     </tbody>
