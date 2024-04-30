@@ -1,5 +1,6 @@
 package com.korea.JpaMission1.domain.article;
 
+import com.korea.JpaMission1.domain.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,12 @@ import java.util.Optional;
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
-    public Article saveDefault(String title, String content){
+    public Article saveDefault(String title, String content, SiteUser user){
         Article article = new Article();
         article.setTitle(title);
         article.setContent(content);
         article.setCreateDate(LocalDateTime.now());
-
+        article.setAuthor(user);
         return articleRepository.save(article);
     }
 

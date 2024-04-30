@@ -1,6 +1,7 @@
 package com.korea.JpaMission1.domain.article;
 
-import com.korea.JpaMission1.domain.comment.Comment;
+
+import com.korea.JpaMission1.domain.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,6 @@ public class Article {
 
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "article")
-    List<Comment> commentList = new ArrayList<>();
+    @ManyToOne
+    private SiteUser author;
 }

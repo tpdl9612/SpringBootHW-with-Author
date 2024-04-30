@@ -2,9 +2,12 @@ package com.korea.JpaMission1.domain.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.config.ConfigDataLocationNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +50,14 @@ public class UserService {
             return "signup_form";
         }
         return null; // 유효성 검사 통과
+    }
+
+    public SiteUser getUser(String username){
+        Optional<SiteUser> siteUser = this.userRepository.findByUsername(username);
+        if(siteUser.isPresent()){
+            return siteUser.get();
+        }else{
+            throw new RuntimeException("siteUser not found");
+        }
     }
 }

@@ -3,6 +3,9 @@
 <body>
 <h4 th:text="${article.title}"></h4>
 <div th:text="${article.content}"></div>
+<div class="mb-2">
+    <span th:if="${article.author != null}" th:text="${article.author.username}"></span>
+</div>
 <div>
 <a th:href="@{|/update/${article.id}|}">
     <input type="submit" value="수정!">

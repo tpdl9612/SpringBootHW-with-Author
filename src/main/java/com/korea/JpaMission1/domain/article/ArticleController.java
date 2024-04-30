@@ -1,6 +1,9 @@
 package com.korea.JpaMission1.domain.article;
 
+import com.korea.JpaMission1.domain.user.SiteUser;
+import com.korea.JpaMission1.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,27 +11,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 public class ArticleController {
     private final ArticleRepository articleRepository;
     private final ArticleService articleService;
-
+    private final UserService userService;
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/write")
     public String writeForm() {
         return "article_form";
     }
-
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/write")
     public String write(@RequestParam("title")String title,
-                        @RequestParam("content")String content) {
+                        @RequestParam("content")String content,
+                        Principal principal) {
+        SiteUser siteUser = userService.getUser(principal.getName());
         if(title.trim().length() ==0){
             title = "제목 없음";
         }
         if(content.trim().length()==0){
             content = "냉무";
         }
-        articleService.saveDefault(title, content);
+        articleService.saveDefault(title, content, siteUser);
 
         return "redirect:/";
     }

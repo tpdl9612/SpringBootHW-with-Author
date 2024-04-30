@@ -18,9 +18,11 @@ public class QArticle extends EntityPathBase<Article> {
 
     private static final long serialVersionUID = -200067853L;
 
+    private static final PathInits INITS = PathInits.DIRECT2;
+
     public static final QArticle article = new QArticle("article");
 
-    public final ListPath<com.korea.JpaMission1.domain.comment.Comment, com.korea.JpaMission1.domain.comment.QComment> commentList = this.<com.korea.JpaMission1.domain.comment.Comment, com.korea.JpaMission1.domain.comment.QComment>createList("commentList", com.korea.JpaMission1.domain.comment.Comment.class, com.korea.JpaMission1.domain.comment.QComment.class, PathInits.DIRECT2);
+    public final com.korea.JpaMission1.domain.user.QSiteUser author;
 
     public final StringPath content = createString("content");
 
@@ -31,15 +33,24 @@ public class QArticle extends EntityPathBase<Article> {
     public final StringPath title = createString("title");
 
     public QArticle(String variable) {
-        super(Article.class, forVariable(variable));
+        this(Article.class, forVariable(variable), INITS);
     }
 
     public QArticle(Path<? extends Article> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QArticle(PathMetadata metadata) {
-        super(Article.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QArticle(PathMetadata metadata, PathInits inits) {
+        this(Article.class, metadata, inits);
+    }
+
+    public QArticle(Class<? extends Article> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.author = inits.isInitialized("author") ? new com.korea.JpaMission1.domain.user.QSiteUser(forProperty("author")) : null;
     }
 
 }

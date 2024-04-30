@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -22,7 +23,11 @@ public class MainController {
     public String main(Model model) {
         List<Article> articleList = articleRepository.findAll();
         if(articleList.isEmpty()){
-            articleService.saveDefault("New Title", "");
+            Article article = new Article();
+            article.setTitle("제목 없음");
+            article.setContent("냉무");
+            article.setCreateDate(LocalDateTime.now());
+            articleRepository.save(article);
             return "redirect:/";
 
         }
