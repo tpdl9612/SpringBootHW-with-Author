@@ -7,7 +7,8 @@
     <span th:if="${article.author != null}" th:text="${article.author.username}"></span>
 </div>
 <div>
-<a th:href="@{|/update/${article.id}|}">
+<a th:href="@{|/update/${article.id}|}" sec:authorize="isAuthenticated()" th:if="${article.author != null and
+#authentication.getPrincipal().getUsername() == article.author.username}">
     <input type="submit" value="수정!">
 </a>
 <form th:action="@{|/delete/${article.id}|}" method="post">

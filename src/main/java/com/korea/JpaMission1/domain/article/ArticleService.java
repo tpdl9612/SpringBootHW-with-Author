@@ -21,6 +21,13 @@ public class ArticleService {
         return articleRepository.save(article);
     }
 
+    public void update(Article article, String title, String content) {
+        article.setTitle(title);
+        article.setContent(content);
+        article.setModifyDate(LocalDateTime.now());
+        this.articleRepository.save(article);
+    }
+
     public Article findArticleById(int id) {
         Optional <Article> article = articleRepository.findById(id);
         return article.orElseThrow(() -> new RuntimeException("찾을 수 없는 값입니다."));
